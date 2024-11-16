@@ -25,7 +25,7 @@ Bootstrap Resampling: Provides a resampling generator for robust statistical eva
 ## Usage
 Here’s a quick example of calculating CVD risk using the PREVENT model:
 ```python
-from clinical_model_research_utils import PREVENT_10yr_CVD_risk
+from guideline_models import PREVENT_10yr_CVD_risk
 
 log_odds, risk = PREVENT_10yr_CVD_risk(
     sex=0, age=60, TC=6, HDL_C=1.7, TC_treat_status=1,
@@ -37,7 +37,7 @@ print(f"10-year CVD Risk: {risk*100:.2f}%")
 
 For model evaluation:
 ```python
-from clinical_model_research_utils import get_continuous_nri
+from metrix import get_continuous_nri
 
 nri_event, nri_nonevent, continuous_nri = get_continuous_nri(
     y_true, old_model_preds, new_model_preds
