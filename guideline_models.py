@@ -84,7 +84,7 @@ def PREVENT_10yr_CVD_risk(sex, age, TC, HDL_C, TC_treat_status, SBP, BP_treat_st
     ceGFR_max = (max(eGFR, 60) - 90) / -15
 
     # Coefficients for males and females
-    if sex == 0:
+    if sex == 0:  # Female
         coefficients = {
             "intercept": -3.307728,
             "age": 0.7939329,
@@ -107,7 +107,7 @@ def PREVENT_10yr_CVD_risk(sex, age, TC, HDL_C, TC_treat_status, SBP, BP_treat_st
             "age_smoking": -0.078715,
             "age_eGFR_min": -0.1637806
         }
-    else:
+    elif sex == 1:  # Male
         coefficients = {
             "intercept": -3.031168,
             "age": 0.7688528,
@@ -221,7 +221,7 @@ def SCORE2_10yr_CVD_risk(sex, age, SBP, TC, HDL_C, smoking_status, risk_region='
     chdl = (HDL_C - 1.3) / 0.5
     
     # Coefficients for males and females
-    if sex == 1:
+    if sex == 1:  # Male
         coefficients = {
             "age": 0.3742,
             "smoking": 0.6012,
@@ -234,7 +234,7 @@ def SCORE2_10yr_CVD_risk(sex, age, SBP, TC, HDL_C, smoking_status, risk_region='
             "hdl_age": 0.0426
         }
         baseline_survival = 0.9605
-    else:
+    elif sex == 0:  # Female
         coefficients = {
             "age": 0.4648,
             "smoking": 0.7744,
@@ -363,7 +363,7 @@ def SCORE2_diabetes_10yr_CVD_risk(sex, age, SBP, TC, HDL_C, smoking_status, a1c,
     cagediab = if_diabetes * (age_diabetes - 50) / 5 if if_diabetes and age_diabetes else 0
 
     # Coefficients for males and females
-    if sex == 1:
+    if sex == 1:  # Male
         coefficients = {
             "age": 0.5368,
             "smoking": 0.4774,
@@ -384,7 +384,7 @@ def SCORE2_diabetes_10yr_CVD_risk(sex, age, SBP, TC, HDL_C, smoking_status, a1c,
             "cagediab": -0.0998
         }
         baseline_survival = 0.9605
-    else:
+    elif sex == 0:  # Female
         coefficients = {
             "age": 0.6624,
             "smoking": 0.6139,
@@ -539,7 +539,7 @@ def PCE_10yr_CVD_risk(sex, age, Chol, HDL_C, SBP, BP_treat_status, if_current_sm
             "log_age_x_current_smoker": -1.665,
             "diabetes": 0.661
         }
-    else:  # Male
+    elif sex == 1:  # Male
         coefficients = {
             "intercept": 61.18,
             "baseline_surv": 0.9144,

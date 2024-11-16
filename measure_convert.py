@@ -48,7 +48,7 @@ def eGFR_2021_CKD_EPI(sex, age, S_cr, S_cys=None):
 
     k = {0: 0.7, 1: 0.9}[sex]
     
-    # 基础版公式
+    # 2021 CKD-EPI Creatinine
     if S_cys is None:
         miu = 142
         a1 = {0: -0.329, 1: -0.411}[sex]
@@ -59,7 +59,7 @@ def eGFR_2021_CKD_EPI(sex, age, S_cr, S_cys=None):
         d = {0: 1.012, 1: 1}[sex] # *d if female
         S_cys = 0
         
-    # S_cys改进公式
+    # 2021 CKD-EPI Creatinine-Cystatin C
     else:
         miu = 135
         a1 = {0: -0.219, 1: -0.144}[sex]
